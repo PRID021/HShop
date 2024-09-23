@@ -42,6 +42,6 @@ def vote(request: HttpRequest, question_id):
             selected_choice = question.choice_set.get(pk=selected_choice_id)
             selected_choice.votes += 1
             selected_choice.save()
-            return redirect("results", question_id=question.id)
+            return redirect("polls:results", question_id=question.id)
 
     return HttpResponse("You're voting on question %s. " % question_id)

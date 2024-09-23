@@ -148,7 +148,7 @@
         <ul>
             {% for question in latest_question_list %}
             <li>
-                <a href="/polls/{{ question.id }}/" class="card">
+                <a href="{% url 'polls:detail' question.id %}" class="card">
                     <div class="question-text">{{ question.question_text }}</div>
                     <div class="pub-date">Published on: {{ question.pub_date|date:"F j, Y, g:i a" }}</div>
                     {% if question.was_published_recently %}
