@@ -1,0 +1,51 @@
+# Python files
+*.py[cod]
+__pycache__/
+*.pyo
+
+# Django specific
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+*.log
+*.pot
+*.pyc
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+*.whl
+
+# Environment variables
+.env
+*.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Poetry
+poetry.lock
+*.toml
+
+# Local configuration files
+local_settings.py

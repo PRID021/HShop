@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.utils import timezone
 
 from polls.models import Question
-from polls_test.utils import create_question
+from .utils import create_question
+
 
 
 

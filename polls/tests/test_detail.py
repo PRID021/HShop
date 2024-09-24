@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from polls_test.test_index import create_question
+from .utils import create_question
 
 
 class QuestionDetailViewTests(TestCase):
