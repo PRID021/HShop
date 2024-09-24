@@ -5,6 +5,8 @@ class AppRouter:
         """Point all read operations to the appropriate database."""
         if model._meta.app_label == "polls":
             return "polls_db"
+        if model._meta.app_label == "askservice":
+            return "askservice_db"
 
         return None
 
@@ -12,6 +14,8 @@ class AppRouter:
         """Point all write operations to the appropriate database."""
         if model._meta.app_label == "polls":
             return "polls_db"
+        if model._meta.app_label == "askservice":
+            return "askservice_db"
 
         return None
 
@@ -19,11 +23,14 @@ class AppRouter:
         """Allow relations if a model in the app is involved."""
         if obj1._meta.app_label == "polls" or obj2._meta.app_label == "polls":
             return True
-
+        if obj1._meta.app_label == "askservice" or obj2._meta.app_label == "askservice":
+            return True
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """Ensure that the apps only appear in the specified databases."""
         if app_label == "polls":
             return db == "polls_db"
+        if app_label == "askservice":
+            return db == "askservice_db"
         return None

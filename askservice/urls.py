@@ -1,0 +1,33 @@
+from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions, routers
+
+from askservice.views.hello import HelloWorld
+from askservice.views.user import UserViewSet
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r"users", UserViewSet)
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Askservice API",
+        default_version="v1",
+        description="API documentation for AskService",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+
+urlpatterns = [
+    path("", include(router.urls)),
+    path("hello/", HelloWorld.as_view(), name="hello"),
+    path(
+        "docs/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+]

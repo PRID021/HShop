@@ -17,6 +17,10 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "pools_db.sqlite3",
     },
+    "askservice_db": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "databases" / "askservice_db.sqlite3",
+    },
 }
 
 # Other development-specific settings

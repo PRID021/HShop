@@ -2,6 +2,7 @@
 DJANGO_ENV ?= dev
 POETRY = poetry
 PYTHON = $(POETRY) run python
+app ?= polls
 
 # Run the Django development server
 runserver:
@@ -9,11 +10,11 @@ runserver:
 
 # Migrate database changes
 migrate:
-	$(POETRY) run python manage.py migrate --database=polls
+	$(POETRY) run python manage.py migrate --database=$(app)_db
 
 # Make migrations
 migrations:
-	$(POETRY) run python manage.py makemigrations  polls
+	$(POETRY) run python manage.py makemigrations  $(app)
 
 # Install dependencies
 install:
@@ -21,7 +22,7 @@ install:
 
 # Run tests
 test:
-	$(POETRY) run python manage.py test polls/tests
+	$(POETRY) run python manage.py test $(app)/tests
 
 # Run the server with environment variables
 serve:

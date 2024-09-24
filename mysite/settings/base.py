@@ -1,9 +1,9 @@
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BUILD PATHS INSIDE THE PROJECT LIKE THIS: BASE_DIR / 'SUBDIR'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Application definition
+# APPLICATION DEFINITION
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -11,8 +11,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework_swagger",
+    "drf_yasg",
     "polls",
-    "django_extensions",  # Keep common apps here
+    "askservice",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -45,7 +49,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "mysite.wsgi.application"
 
-# Password validation
+# PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
@@ -61,19 +65,30 @@ TIME_ZONE = "Asia/Bangkok"
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# STATIC FILES (CSS, JAVASCRIPT, IMAGES)
 STATIC_URL = "static/"
 
-# Add your app's static files to the STATICFILES_DIRS if needed
+# ADD YOUR APP'S STATIC FILES TO THE STATICFILES_DIRS IF NEEDED
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     "polls/static",
 ]
 
-# Default primary key field type
+# DEFAULT PRIMARY KEY FIELD TYPE
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 DATABASE_ROUTERS = [
     "mysite.settings.db_router.AppRouter",  # Full Python path to the AppRouter class
 ]
+
+# GLOBAL SETTINGS FOR A REST FRAMEWORK API
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ]
+}

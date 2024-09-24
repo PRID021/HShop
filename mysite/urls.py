@@ -22,11 +22,13 @@ from django.shortcuts import redirect
 from django.urls import include, path
 
 urlpatterns = [
-    path("", lambda request: redirect("polls/")),
+    path("", lambda request: redirect("askservice/docs")),
     path("polls/", include("polls.urls")),
+    path("askservice/", include("askservice.urls")),
     path("admin/", admin.site.urls),
-] 
+]
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]   
+
+    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
