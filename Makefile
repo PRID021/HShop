@@ -9,11 +9,11 @@ runserver:
 
 # Migrate database changes
 migrate:
-	$(POETRY) run python manage.py migrate
+	$(POETRY) run python manage.py migrate --database=polls
 
 # Make migrations
-makemigrations:
-	$(POETRY) run python manage.py makemigrations
+migrations:
+	$(POETRY) run python manage.py makemigrations  polls
 
 # Install dependencies
 install:

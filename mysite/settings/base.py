@@ -66,3 +66,8 @@ STATIC_URL = "static/"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+DATABASE_ROUTERS = [
+    "mysite.settings.db_router.AppRouter",  # Full Python path to the AppRouter class
+]

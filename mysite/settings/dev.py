@@ -11,8 +11,12 @@ ALLOWED_HOSTS = ["*"]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "NAME": BASE_DIR / "databases" / "db.sqlite3",
+    },
+    "polls": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "databases" / "pools_db.sqlite3",
+    },
 }
 
 # Other development-specific settings
