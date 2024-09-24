@@ -1,0 +1,12 @@
+/* myapp/static/myapp/admin.css */
+
+/* Override the default admin inline label style */
+.inline-group h2 {
+    font: 1em sans-serif;
+    text-transform: none;  /* Disable uppercase transformation */
+}
+
+/* Optional: Override the default for fieldsets as well */
+fieldset h2 {
+    text-transform: none;  /* Disable uppercase transformation */
+}

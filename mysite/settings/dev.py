@@ -13,7 +13,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "db.sqlite3",
     },
-    "polls": {
+    "polls_db": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "pools_db.sqlite3",
     },

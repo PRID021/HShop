@@ -48,3 +48,7 @@ shell:
 # Start jupyter sever, convience for testing.
 jupyter:
 	$(PYTHON) manage.py shell_plus --notebook
+
+# Open Django template dir
+where_template:
+	$(PYTHON) -c "import django; print(django.__path__)"
