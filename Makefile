@@ -10,9 +10,7 @@ runserver:
 
 # Migrate database changes
 migrate:
-	$(POETRY) run python manage.py migrate --database=auth_db
-	$(POETRY) run python manage.py migrate --database=polls_db
-	$(POETRY) run python manage.py migrate --database=askservice_db
+	$(POETRY) run python manage.py migrate 
 	
 
 # Make migrations

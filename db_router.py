@@ -1,85 +1,36 @@
-class AppRouter:
+from mysite.settings.base import DB_MAPPING
+
+
+class DBRouter:
     """
-    A router to control database operations for authentication (auth app) and two apps (app1 and app2).
-    Routes:
-    - Auth and related tables to 'auth_db'
-    - App1 models to 'app1_db'
-    - App2 models to 'app2_db'
+    A router to control all database operations on models in the
+    auth and contenttypes applications.
     """
 
     def db_for_read(self, model, **hints):
         """
-        Direct read operations to the appropriate database.
-        - User/authentication models go to 'auth_db'
-        - App1 models go to 'app1_db'
-        - App2 models go to 'app2_db'
+        Attempts to read auth and contenttypes models go to auth_db.
         """
-        if (
-            model._meta.app_label == "auth"
-            or model._meta.app_label == "contenttypes"
-            or model._meta.app_label == "sessions"
-        ):
-            return "auth_db"
-        if model._meta.app_label == "polls":
-            return "polls_db"
-        if model._meta.app_label == "askservice":
-            return "askservice_db"
-
-        return None
+        return DB_MAPPING.get(model._meta.app_label, "default")
 
     def db_for_write(self, model, **hints):
         """
-        Direct write operations to the appropriate database.
-        - User/authentication models go to 'auth_db'
-        - App1 models go to 'app1_db'
-        - App2 models go to 'app2_db'
+        Attempts to write auth and contenttypes models go to auth_db.
         """
-        if (
-            model._meta.app_label == "auth"
-            or model._meta.app_label == "contenttypes"
-            or model._meta.app_label == "sessions"
-        ):
-            return "auth_db"
-        if model._meta.app_label == "polls":
-            return "polls_db"
-        if model._meta.app_label == "askservice":
-            return "askservice_db"
-
-        return None
+        return DB_MAPPING.get(model._meta.app_label, "default")
 
     def allow_relation(self, obj1, obj2, **hints):
         """
-        Allow relations between models in the same database.
-        For instance, users and permissions (from auth app) should relate to each other.
+        Allow relations if a model in the auth or contenttypes apps is
+        involved.
         """
-        if (
-            obj1._meta.app_label == "auth"
-            or obj1._meta.app_label == "contenttypes"
-            or obj1._meta.app_label == "sessions"
-        ) and (
-            obj2._meta.app_label == "auth"
-            or obj2._meta.app_label == "contenttypes"
-            or obj2._meta.app_label == "sessions"
-        ):
-            return True
-        if obj1._meta.app_label == "polls" or obj2._meta.app_label == "polls":
-            return True
-        if obj1._meta.app_label == "askservice" or obj2._meta.app_label == "askservice":
+        if obj1._meta.app_label == obj2._meta.app_label:
             return True
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """
-        Ensure the auth app only appears in 'auth_db', and the respective apps only appear in their databases.
+        Make sure the auth and contenttypes apps only appear in the
+        'auth_db' database.
         """
-        if (
-            app_label == "auth"
-            or app_label == "contenttypes"
-            or app_label == "sessions"
-        ):
-            return db == "auth_db"
-        if app_label == "polls":
-            return db == "polls_db"
-        if app_label == "askservice":
-            return db == "askservice_db"
-        return None
+        return db == DB_MAPPING.get(app_label, "default")

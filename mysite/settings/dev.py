@@ -11,11 +11,11 @@ ALLOWED_HOSTS = ["*"]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "databases" / "db.sqlite3",
+        "NAME": BASE_DIR / "databases" / "default.sqlite3",
     },
     "auth_db": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "auth_db.sqlite3",
+        "NAME": BASE_DIR / "databases" / "auth_db.sqlite3",
     },
     "polls_db": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -27,8 +27,11 @@ DATABASES = {
     },
 }
 
+
+
 # Other development-specific settings
 INSTALLED_APPS += ["debug_toolbar"]  # Example: Adding debug toolbar for development
+
 
 MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 

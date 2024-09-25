@@ -23,3 +23,5 @@ class Question(models.Model):
             >= self.pub_date
             >= timezone.now() - datetime.timedelta(days=1)
         )
+    class Meta:
+        app_label = 'polls'

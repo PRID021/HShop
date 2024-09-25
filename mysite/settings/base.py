@@ -79,8 +79,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 DATABASE_ROUTERS = [
-    BASE_DIR / "db_router.AppRouter",  # Full Python path to the AppRouter class
+    BASE_DIR / "db_router.AuthRouter",
+    BASE_DIR / "db_router.PollsRouter",
+    BASE_DIR / "db_router.AskServiceRouter",
 ]
+
+
+DB_MAPPING = {
+    "auth": "auth_db",
+    "polls": "polls_db",
+    "askservice": "askservice_db",
+}
 
 # GLOBAL SETTINGS FOR A REST FRAMEWORK API
 
