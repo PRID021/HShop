@@ -79,7 +79,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 DATABASE_ROUTERS = [
-    "mysite.settings.db_router.AppRouter",  # Full Python path to the AppRouter class
+    BASE_DIR / "db_router.AppRouter",  # Full Python path to the AppRouter class
 ]
 
 # GLOBAL SETTINGS FOR A REST FRAMEWORK API
@@ -90,5 +90,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }

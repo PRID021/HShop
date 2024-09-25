@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-class HelloWorld(APIView):
+class HelloWorldAPIView(APIView):
     permission_classes = []
 
     def get(self, request):
