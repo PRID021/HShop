@@ -11,22 +11,21 @@ ALLOWED_HOSTS = ["*"]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "databases" / "default.sqlite3",
+        "NAME": BASE_DIR / "databases" / "default_db.sqlite3",
     },
-    "auth_db": {
+    "auth": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "auth_db.sqlite3",
     },
-    "polls_db": {
+    "polls": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "pools_db.sqlite3",
     },
-    "askservice_db": {
+    "askservice": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "databases" / "askservice_db.sqlite3",
     },
 }
-
 
 
 # Other development-specific settings
