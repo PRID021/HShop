@@ -19,17 +19,17 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-from app.views import views
+from app.views import polls_views
 
-app_name = "polls"
+app_name = "app"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("", views.IndexView.as_view(), name="index"),
-    path("<int:pk>/", view=views.DetailView.as_view(), name="detail"),
-    path("<int:pk>/results/", view=views.ResultView.as_view(), name="results"),
-    path("<int:question_id>/vote/", view=views.vote, name="vote"),
+    path("", polls_views.IndexView.as_view(), name="index"),
+    path("<int:pk>/", view=polls_views.DetailView.as_view(), name="detail"),
+    path("<int:pk>/results/", view=polls_views.ResultView.as_view(), name="results"),
+    path("<int:question_id>/vote/", view=polls_views.vote, name="vote"),
 ]
 
 if settings.DEBUG:
