@@ -52,3 +52,11 @@ jupyter:
 # Open Django template dir
 where_template:
 	$(PYTHON) -c "import django; print(django.__path__)"
+
+# Initilize and start server
+start:
+	docker compose up -d
+	$(POETRY) run python manage.py makemigrations
+	$(POETRY) run python manage.py migrate
+	$(POETRY) run python manage.py runserver
+
