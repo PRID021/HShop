@@ -10,12 +10,10 @@ runserver:
 
 # Migrate database changes
 migrate:
-	$(POETRY) run python manage.py migrate 
-	
-
+	$(POETRY) run python manage.py migrate
 # Make migrations
 migrations:
-	$(POETRY) run python manage.py makemigrations  polls askservice
+	$(POETRY) run python manage.py makemigrations 
 
 # Install dependencies
 install:

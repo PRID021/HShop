@@ -10,11 +10,11 @@ def main():
 
     # Map the environment to the corresponding settings file
     if environment == "production":
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings.prod")
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings.prod")
     elif environment == "test":
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings.test")
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings.test")
     else:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings.dev")
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings.dev")
 
     try:
         from django.core.management import execute_from_command_line

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mysite"
+name = "myapp"
 version = "0.1.0"
 description = ""
 authors = ["DucHoang-UIT <hoangduc.uit.dev@gmail.com>"]
@@ -16,6 +16,7 @@ markdown = "^3.7"
 django-filter = "^24.3"
 django-rest-swagger = "^2.2.0"
 drf-yasg = "^1.21.7"
+psycopg2 = "^2.9.9"
 
 
 [build-system]
