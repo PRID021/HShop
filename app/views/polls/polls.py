@@ -7,7 +7,7 @@ from django.urls import path
 from django.utils import timezone
 from django.views import generic
 
-from ..models import Question
+from ...models import Question
 
 
 class IndexView(generic.ListView):
