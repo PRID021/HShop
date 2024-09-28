@@ -52,3 +52,4 @@ poetry.lock
 local_settings.py
 
 .env
+dev/
