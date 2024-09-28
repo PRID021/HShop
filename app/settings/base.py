@@ -1,5 +1,9 @@
 from pathlib import Path
 
+from decouple import config
+
+SECRET_KEY = config("DJANGO_SECRET_KEY")
+
 # BUILD PATHS INSIDE THE PROJECT LIKE THIS: BASE_DIR / 'SUBDIR'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -88,3 +92,19 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
+
+
+# Database settings (can be SQLite for development)
+DATABASES = {
+    "default": {},
+    "app": {
+        "ENGINE": config("DATABASE_ENGINE"),
+        "NAME": config("DATABASE_NAME"),
+        "USER": config("DATABASE_USER"),
+        "PASSWORD": config("DATABASE_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DATABASE_PORT"),
+    },
+}
+
+DATABASES["default"] = DATABASES["app"]

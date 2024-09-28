@@ -50,3 +50,5 @@ poetry.lock
 
 # Local configuration files
 local_settings.py
+
+.env
