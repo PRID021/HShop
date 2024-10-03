@@ -27,7 +27,7 @@ urlpatterns = [
     path("", redirect_to_admin),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("polls/", include("app.modules.polls.views.urls")),
+    path("polls/", include("app.modules.polls.urls")),
 ]
 
 if settings.DEBUG:
