@@ -2830,6 +2830,17 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "rest-framework-simplejwt"
+version = "0.0.2"
+description = "PoC of pipreqs dependency confusion"
+optional = false
+python-versions = ">=3.0"
+files = [
+    {file = "rest_framework_simplejwt-0.0.2-py3-none-any.whl", hash = "sha256:620c56826ff4791c4aaa730ec52aed1f4c74b9c20ea15b9fc1a39bdf99a29a30"},
+    {file = "rest_framework_simplejwt-0.0.2.tar.gz", hash = "sha256:035187ce5380e18e8b966610a89b6460fb4b73cd179979343888fb190328125d"},
+]
+
+[[package]]
 name = "rfc3339-validator"
 version = "0.1.4"
 description = "A pure python RFC3339 validator"
@@ -3652,4 +3663,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a8dd2cd83d0cd6ff151d930f0901bc509d18b223d2fb6249d89fbb4df405dc16"
+content-hash = "9a8295144f6acc48771a1a512ca67569f29b9d216dc7bd5817f5b55b5bd9eba0"

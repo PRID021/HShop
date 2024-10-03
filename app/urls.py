@@ -19,7 +19,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-from app.views.redirects import redirect_to_admin
+from app.redirects import redirect_to_admin
 
 app_name = "app"
 
@@ -27,7 +27,7 @@ urlpatterns = [
     path("", redirect_to_admin),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("polls/", include("app.views.polls.urls")),
+    path("polls/", include("app.modules.polls.views.urls")),
 ]
 
 if settings.DEBUG:

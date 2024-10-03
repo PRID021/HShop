@@ -7,7 +7,7 @@ from django.urls import path
 from django.utils import timezone
 from django.views import generic
 
-from ...models import Question
+from app.modules.polls.models.question import Question
 
 
 class IndexView(generic.ListView):
@@ -53,5 +53,3 @@ def vote(request: HttpRequest, question_id):
             return redirect("results", pk=question.id)
 
     return HttpResponse("You're voting on question %s. " % question_id)
-
-
