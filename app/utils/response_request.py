@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from rest_framework import status
 
-from .error_definition import error_codes, messages
+from .error_definition import error_codes, messages,error_messages
 
 
 def response_ok(data=None, meta={}):
@@ -20,7 +20,7 @@ def response_err401(code=None, message=None):
     if code is None:
         code = error_codes["unauthorized"]["common"]
     if message is None:
-        message = message["unauthorized"]["common"]
+        message = error_messages["unauthorized"]["common"]
     error = {"code": code, "message": message}
     return JsonResponse(
         error,
@@ -32,7 +32,7 @@ def response_err422(errors, code=None, message=None):
     if code is None:
         code = error_codes["unprocessable_entity"]["common"]
     if message is None:
-        message = messages["unprocessable_entity"]["common"]
+        message = error_messages["unprocessable_entity"]["common"]
 
     error = {
         "code": code,

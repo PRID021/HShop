@@ -22,7 +22,8 @@ error_messages = {
             "token": {
                 "failure": "auth_cannot_generate_token",
             },
-        }
+        },
+        "common": "unauthorized",
     },
     "unprocessable_entity": {
         "login": {
@@ -37,5 +38,4 @@ messages = {
     "unprocessable_entity": {
         "common": "unprocessable_entity",
     },
-
 }
