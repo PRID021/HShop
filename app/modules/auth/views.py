@@ -69,12 +69,11 @@ class AuthViewSet(ViewSet):
         email = request.data.get("email")
         password = request.data.get("password")
 
-        if not email or password:
+        if not email or not password:
             return response_err401(
                 code=error_messages["unauthorized"]["login"]["blank"]
             )
         user = verify_password(email=email, password=password)
-
         if not user:
             return response_err422(
                 errors={
