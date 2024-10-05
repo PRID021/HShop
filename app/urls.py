@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from app.admin import *
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
@@ -22,10 +23,15 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-from app.redirects import redirect_to_admin, redirect_to_swagger
+from app.admins.choice_admin import ChoiceAdmin
+from app.admins.question_admin import QuestionAdmin
 from app.modules.auth.urls import router as authRouter
+from app.modules.polls.models.choice import Choice
+from app.modules.polls.models.question import Question
+from app.utils.redirects import redirect_to_swagger
 
 app_name = "app"
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -47,10 +53,9 @@ urlpatterns = [
         name="schema-swagger-ui",
     ),
     path("", redirect_to_swagger),
-    path("admin/", admin.site.urls),
-    # path("accounts/", include("django.contrib.auth.urls")),
     path("polls/", include("app.modules.polls.urls")),
     path("auth/", include(authRouter.urls)),
+    path("admin/", admin.site.urls),
 ]
 
 

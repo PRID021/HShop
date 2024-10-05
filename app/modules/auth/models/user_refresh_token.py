@@ -1,6 +1,6 @@
 from django.db import models
 
-from app.modules.auth.client_user import ClientUser
+from app.modules.auth.models.client_user import ClientUser
 
 
 class UserRefreshToken(models.Model):

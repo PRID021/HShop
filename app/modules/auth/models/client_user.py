@@ -6,6 +6,7 @@ class ClientUser(models.Model):
     password = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     name = models.CharField(max_length=100)
+    password = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

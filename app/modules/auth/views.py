@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework.viewsets import ViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from app.modules.auth.user_refresh_token import UserRefreshToken
+from app.modules.auth.models.user_refresh_token import UserRefreshToken
 from app.utils.error_definition import error_codes, error_messages
 from app.utils.response_request import response_err401, response_err422, response_ok
 from app.utils.response_schema import success_response_scheme

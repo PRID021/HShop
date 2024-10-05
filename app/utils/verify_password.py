@@ -1,6 +1,6 @@
 
 
-from app.modules.auth.client_user import ClientUser
+from app.modules.auth.models.client_user import ClientUser
 from django.contrib.auth.hashers import check_password 
 
 def verify_password(email= None, password= None):
