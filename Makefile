@@ -29,7 +29,7 @@ serve:
 
 # Create a superuser
 createsuperuser:
-	$(POETRY) run python manage.py createsuperuser
+	docker compose exec api $(POETRY) run python manage.py createsuperuser
 
 # Collect static files
 collectstatic:
@@ -60,3 +60,22 @@ start:
 	$(POETRY) run python manage.py migrate
 	$(POETRY) run python manage.py runserver
 
+
+
+
+# Start containers in detached mode
+up:
+	@echo "Starting Docker containers..."
+	@docker compose up
+
+# Stop containers and remove them along with images and volumes
+down:
+	@echo "Stopping and removing containers, images, and volumes..."
+	@docker compose down 
+	@echo "Removing specific Docker images..."
+	@docker rmi app-api app-celery_worker || true
+
+# Clean up dangling images and stopped containers (if any remain)
+clean:
+	@echo "Cleaning up dangling images and stopped containers..."
+	@docker system prune -f --volumes

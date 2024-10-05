@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  app:
+  postgres:
     image: postgres:16.2-alpine3.19
-    container_name: app-db
+    container_name: postgres
     environment:
       POSTGRES_DB: db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8"
     ports:
-      - "5431:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgres
 
@@ -28,12 +28,13 @@ services:
       - "5050:80"
   redis:
     image: redis:7.2.4
-    container_name: app-redis
+    container_name: redis
     command: redis-server
     ports:
-      - 6379:6379
+      - "6379:6379"
 
   celery_worker:
+    container_name: celery_worker
     build:
       context: .
       dockerfile: Dockerfile
@@ -45,5 +46,21 @@ services:
     command: celery -A app worker -l info
     depends_on:
       - redis
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    env_file:
+      - .env
+    ports:
+      - "8000:8080"
+    volumes:
+      - .:/server
+    depends_on:
+      - postgres
+
 volumes:
   postgres_data:

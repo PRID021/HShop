@@ -41,4 +41,4 @@ RUN poetry install --no-interaction --no-ansi --no-root --no-directory
 
 COPY . .
 
-CMD python manage.py runserver 0.0.0.0:8000
+CMD python manage.py runserver_with_migrate 0.0.0.0:8080
