@@ -1,4 +1,3 @@
-
 from django.db import models
 
 from .question import Question
@@ -13,5 +12,3 @@ class Choice(models.Model):
 
     def __str__(self) -> str:
         return self.choice_text
-
-

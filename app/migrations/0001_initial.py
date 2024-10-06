@@ -6,24 +6,11 @@ import django.db.models.deletion
 from django.db import migrations, models
 
 
-def load_sql_script(apps, schema_editor):
-    if os.getenv("DJANGO_ENV") == "production":
-        path = "path/to/your/prod_script.sql"
-    elif os.getenv("DJANGO_ENV") == "test":
-        path = "path/to/your/test_script.sql"
-    else:
-        path = "scripts/dev_script.sql"
-    with open(path, "r") as sql_file:
-        sql_content = sql_file.read()
-    schema_editor.execute(sql_content)
 
 
 class Migration(migrations.Migration):
-
     initial = True
-
     dependencies = []
-
     operations = [
         migrations.CreateModel(
             name="Question",
@@ -63,5 +50,4 @@ class Migration(migrations.Migration):
                 ),
             ],
         ),
-        migrations.RunPython(load_sql_script),
     ]

@@ -15,7 +15,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from app.admin import *
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
@@ -23,6 +22,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
+from app.admin import *
 from app.admins.choice_admin import ChoiceAdmin
 from app.admins.question_admin import QuestionAdmin
 from app.modules.auth.urls import router as authRouter
