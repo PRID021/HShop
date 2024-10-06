@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from app.modules.polls.models.choice import Choice
+
 
 class ChoiceAdmin(admin.ModelAdmin):
     fieldsets = [

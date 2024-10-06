@@ -10,10 +10,10 @@ runserver:
 
 # Migrate database changes
 migrate:
-	$(POETRY) run python manage.py migrate
+	docker compose exec api $(POETRY) run python manage.py migrate
 # Make migrations
 migrations:
-	$(POETRY) run python manage.py makemigrations 
+	docker compose exec api $(POETRY) run python manage.py makemigrations 
 
 # Install dependencies
 install:
@@ -29,7 +29,8 @@ serve:
 
 # Create a superuser
 createsuperuser:
-	docker compose exec api $(POETRY) run python manage.py createsuperuser
+	docker compose exec api $(POETRY) run python manage.py createsuperuser --username admin --email name@example.com
+
 
 # Collect static files
 collectstatic:
@@ -79,3 +80,10 @@ down:
 clean:
 	@echo "Cleaning up dangling images and stopped containers..."
 	@docker system prune -f --volumes
+
+stop:
+	make down
+	make clean
+
+pem:
+	docker compose exec api $(POETRY) run python manage.py show_permissions

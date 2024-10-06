@@ -12,3 +12,4 @@ class Choice(models.Model):
 
     def __str__(self) -> str:
         return self.choice_text
+

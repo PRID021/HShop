@@ -1,6 +1,7 @@
 from decouple import config
 from django import forms
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.hashers import make_password
 from django.http import HttpRequest
 
@@ -41,7 +42,7 @@ class ClientUserForm(forms.ModelForm):
         return cleaned_data
 
 
-class ClientUserAdmin(admin.ModelAdmin):
+class ClientUserAdmin(UserAdmin):
     list_per_page = 30
     form = ClientUserForm
     list_display = ("id", "name", "email", "phone_number", "created_at", "updated_at")
