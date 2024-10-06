@@ -44,13 +44,18 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Applying migrations..."))
         call_command("migrate")
 
-        self.stdout.write(self.style.SUCCESS("Loading SQL script..."))
-
-        try:
-            load_sql_script()  # Load the SQL script after migrations
-            self.stdout.write(self.style.SUCCESS("SQL script loaded successfully!"))
-        except FileNotFoundError as e:
-            self.stdout.write(self.style.ERROR(str(e)))
+        if not os.getenv("LOAD_SCRIPTED"):
+            try:
+                self.stdout.write(self.style.SUCCESS("Loading SQL script..."))
+                load_sql_script()  # Load the SQL script
+                os.environ["LOAD_SCRIPTED"] = (
+                    "True"  # Use string for environment variable
+                )
+                self.stdout.write(self.style.SUCCESS("SQL script loaded successfully!"))
+            except FileNotFoundError as e:
+                self.stdout.write(self.style.ERROR(f"FileNotFoundError: {str(e)}"))
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f"An error occurred: {str(e)}"))
 
         self.stdout.write(self.style.SUCCESS("Starting the development server..."))
         # Pass the optional address and port to runserver
