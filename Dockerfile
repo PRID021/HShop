@@ -7,15 +7,28 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /server
 
+# Install necessary packages and Rust
 RUN apk add --no-cache \
     gcc \
     libpq-dev \
     musl-dev \
     libffi-dev \
     openssl-dev \
-    cargo \
     mariadb-dev \
-    ffmpeg
+    ffmpeg \
+    curl \
+    build-base \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && /root/.cargo/bin/rustup default stable \
+    && /root/.cargo/bin/rustup install 1.64.0 \
+    && /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl
+
+# Set the PATH for Rust
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Check if rustc is installed correctly
+RUN rustc --version
+
 
 RUN pip install poetry==1.8.1
 

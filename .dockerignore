@@ -1,0 +1,14 @@
+.dockerignore
+Dockerfile
+docker-compose.yml
+.env
+.venv
+.git
+.git
+.github
+.gitignore
+.DB_Store
+.DS_Store
+LICENSE
+README.md
+__pycache__/
