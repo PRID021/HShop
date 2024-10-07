@@ -42,6 +42,7 @@ class ClientUserForm(forms.ModelForm):
         return cleaned_data
 
 
+@admin.register(ClientUser)
 class ClientUserAdmin(UserAdmin):
     list_per_page = 30
     form = ClientUserForm

@@ -80,6 +80,7 @@ down:
 clean:
 	@echo "Cleaning up dangling images and stopped containers..."
 	@docker system prune -f --volumes
+	@docker volume rm app_postgres_data || true
 
 stop:
 	make down
