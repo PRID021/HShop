@@ -42,7 +42,7 @@ class ClientUserForm(forms.ModelForm):
         return cleaned_data
 
 
-@admin.register(ClientUser)
+# @admin.register(ClientUser)
 class ClientUserAdmin(UserAdmin):
     list_per_page = 30
     form = ClientUserForm
@@ -58,7 +58,7 @@ class ClientUserAdmin(UserAdmin):
             self.password = current_user.password
         else:
             obj.password = make_password(obj.password)
-
+        print("===> create 61")
         super().save_model(request, obj, form, change)
 
         if not change:
