@@ -42,12 +42,32 @@ class ClientUserForm(forms.ModelForm):
         return cleaned_data
 
 
-# @admin.register(ClientUser)
 class ClientUserAdmin(UserAdmin):
     list_per_page = 30
     form = ClientUserForm
     list_display = ("id", "name", "email", "phone_number", "created_at", "updated_at")
     readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (None, {"fields": ("username", "password")}),
+        (
+            ("Personal info"),
+            {"fields": ("first_name", "last_name", "email", "phone_number")},
+        ),
+        (
+            ("Permissions"),
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+            },
+        ),
+        (("Important dates"), {"fields": ("last_login", "date_joined")}),
+    )
 
     def save_model(
         self, request: HttpRequest, obj: ClientUser, form: forms.ModelForm, change: bool
@@ -58,7 +78,6 @@ class ClientUserAdmin(UserAdmin):
             self.password = current_user.password
         else:
             obj.password = make_password(obj.password)
-        print("===> create 61")
         super().save_model(request, obj, form, change)
 
         if not change:

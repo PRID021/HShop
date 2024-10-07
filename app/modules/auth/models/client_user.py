@@ -3,12 +3,12 @@ from django.db import models
 
 
 class ClientUser(AbstractUser):
-    username = models.CharField(max_length=150, unique=True, default="anonymus")
+    username = models.CharField(max_length=150, unique=True, default="")
     email = models.CharField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=100, null=True)  # Ensure this field exists
+    name = models.CharField(max_length=100, null=True, blank=True)
 
     # Override the default related names for groups and user_permissions
     groups = models.ManyToManyField(
@@ -23,7 +23,15 @@ class ClientUser(AbstractUser):
     )
 
     def __str__(self):
-        return self.username
+        if not self.name:
+            return f"{self.first_name} {self.last_name}".strip()
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # Set the name to first_name + last_name if name is not provided
+        if not self.name:
+            self.name = f"{self.first_name} {self.last_name}".strip()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Client Users"
