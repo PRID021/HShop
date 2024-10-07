@@ -8,7 +8,6 @@ from django.http import HttpRequest
 from app.modules.auth.models.client_user import ClientUser
 from app.tasks.email import send_email_job
 
-
 # class ClientUserForm(forms.ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 #     password_confirmation = forms.CharField(
@@ -44,6 +43,49 @@ from app.tasks.email import send_email_job
 
 class ClientUserAdmin(UserAdmin):
     list_per_page = 30
+    # List field at Index page
+    list_display = (
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "is_superuser",
+        "created_at",
+    )
+
+    # List field at Show page
+    fieldsets = (
+        (
+            "User Information",
+            {
+                "fields": (
+                    "username",
+                    "email",
+                    "password",
+                    "first_name",
+                    "last_name",
+                    "phone_number",
+                )
+            },
+        ),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                )
+            },
+        ),
+        (
+            "Important dates",
+            {"fields": ("last_login", "date_joined", "created_at", "updated_at")},
+        ),
+    )
+    readonly_fields = ("created_at", "updated_at")
 
     def save_form(self, request, form, change):
         # Access raw password in save_form

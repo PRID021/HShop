@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from rest_framework import status
 
-from .error_definition import error_codes, messages,error_messages
+from .error_definition import error_codes, error_messages, messages
 
 
 def response_ok(data=None, meta={}):
@@ -43,3 +43,21 @@ def response_err422(errors, code=None, message=None):
         error,
         status=status.HTTP_422_UNPROCESSABLE_ENTITY,
     )
+
+
+def response_err400(err=None, code=None):
+    if code is None:
+        code = status.HTTP_400_BAD_REQUEST
+    error = {"code": code, "message": error_messages["bad_request"]["common"]}
+    if err:
+        error.update(err)
+    return JsonResponse(error, status=status.HTTP_400_BAD_REQUEST)
+
+
+def response_err404(code=None, message=None):
+    if code is None:
+        code = error_codes["not_found"]["common"]
+    if message is None:
+        message = error_messages["not_found"]["common"]
+    error = {"code": code, "message": message}
+    return JsonResponse(error, status=status.HTTP_404_NOT_FOUND)

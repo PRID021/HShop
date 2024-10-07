@@ -12,6 +12,9 @@ error_codes = {
     "error_codes": {
         "common": 422000,
     },
+    "not_found": {
+        "common": 404000,
+    },
 }
 
 
@@ -30,6 +33,7 @@ error_messages = {
             "invalid": "invalid_username_password",
         }
     },
+    "bad_request": {"common": "bad_request"},
 }
 
 
