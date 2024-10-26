@@ -57,9 +57,9 @@ where_template:
 # Initilize and start server
 start:
 	docker compose up -d
-	$(POETRY) run python manage.py makemigrations
-	$(POETRY) run python manage.py migrate
-	$(POETRY) run python manage.py runserver
+	docker compose exec api $(POETRY) run python manage.py makemigrations
+	docker compose exec api $(POETRY) run python manage.py migrate
+	docker compose exec api $(POETRY) run python manage.py runserver
 
 
 
